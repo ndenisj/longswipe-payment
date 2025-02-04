@@ -152,12 +152,13 @@ try {
 
 ### Process Payment Response
 
-````json
+```json
 {
   "code": 0,
   "message": "string",
   "status": "string"
 }
+```
 
 ## Error Handling
 

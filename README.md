@@ -174,7 +174,7 @@ try {
         print_r($e->getErrorData());
     }
 }
-````
+```
 
 ## Support
 

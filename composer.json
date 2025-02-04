@@ -1,0 +1,27 @@
+{
+    "name": "ndenisj/longswipe-payment",
+    "description": "Official PHP plugin for Longswipe payment integration",
+    "type": "library",
+    "version": "1.0.0",
+    "keywords": ["payment", "longswipe", "voucher", "php"],
+    "homepage": "https://github.com/ndenisj/longswipe-payment",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Denis John",
+            "email": "denis.john.ndarake@gmail.com",
+            "role": "Senior Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Longswipe\\Payment\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}

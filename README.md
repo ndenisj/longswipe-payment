@@ -1,9 +1,5 @@
 # Longswipe Payment PHP Integration
 
-[![Latest Stable Version](https://poser.pugx.org/ndenisj/longswipe-payment/v/stable)](https://packagist.org/packages/ndenisj/longswipe-payment)
-[![Total Downloads](https://poser.pugx.org/ndenisj/longswipe-payment/downloads)](https://packagist.org/packages/ndenisj/longswipe-payment)
-[![License](https://poser.pugx.org/ndenisj/longswipe-payment/license)](https://packagist.org/packages/ndenisj/longswipe-payment)
-
 A PHP plugin for integrating Longswipe payment voucher system into your application. This plugin provides simple methods to validate and process voucher payments.
 
 ## Requirements

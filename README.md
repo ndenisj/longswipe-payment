@@ -26,16 +26,26 @@ use Longswipe\Payment\Exceptions\LongswipeException;
 // Initialize the client
 $client = new LongswipeClient('your-api-key', true); // true for sandbox, false for production
 
-// Process a payment
-try {
-    // Step 1: Fetch voucher details
-    $voucherDetails = $client->fetchVoucherDetails('VOUCHER123', '1234', 100.00);
+// Example parameters
+$params = [
+    'voucherCode' => 'VOUCHER123',
+    'amount' => 1000,
+    'receivingCurrencyId' => '2eedd32', // Replace with actual receiving currency ID,
+    'lockPin' => '1234', // Optional
+    'walletAddress' => '0x123...' // Optional
+];
 
-    // Step 2: Process the payment
-    $paymentResult = $client->processVoucherPayment('VOUCHER123', '1234', 100.00);
+try {
+    // Fetch voucher details
+    $voucherDetails = $client->fetchVoucherDetails($params);
+
+    // If details are okay, process the payment
+    $paymentResult = $client->processVoucherPayment($params);
 
 } catch (LongswipeException $e) {
     echo "Error: " . $e->getMessage();
+    echo "Code: " . $e->getCode();
+    var_dump($e->getData());
 }
 ```
 
@@ -55,11 +65,15 @@ $client = new LongswipeClient('your-api-key', false);
 
 ```php
 try {
-    $voucherDetails = $client->fetchVoucherDetails(
-        'VOUCHER123',  // voucher code
-        '1234',        // voucher pin
-        100.00         // amount
-    );
+    $params = [
+        'voucherCode' => 'VOUCHER123',
+        'amount' => 1000,
+        'receivingCurrencyId' => '2eedd32', // Replace with actual receiving currency ID,
+        'lockPin' => '1234', // Optional
+        'walletAddress' => '0x123...' // Optional
+    ];
+
+    $voucherDetails = $client->fetchVoucherDetails($params);
 
     if ($voucherDetails['status'] === 'success') {
         // Process voucher details
@@ -78,11 +92,15 @@ try {
 
 ```php
 try {
-    $paymentResult = $client->processVoucherPayment(
-        'VOUCHER123',  // voucher code
-        '1234',        // voucher pin
-        100.00         // amount
-    );
+    $params = [
+        'voucherCode' => 'VOUCHER123',
+        'amount' => 1000,
+        'receivingCurrencyId' => '2eedd32', // Replace with actual receiving currency ID,
+        'lockPin' => '1234', // Optional
+        'walletAddress' => '0x123...' // Optional
+    ];
+
+    $paymentResult = $client->processVoucherPayment($params);
 
     if ($paymentResult['status'] === 'success') {
         // Payment successful

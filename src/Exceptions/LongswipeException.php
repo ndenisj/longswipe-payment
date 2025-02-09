@@ -19,3 +19,4 @@ class LongswipeException extends Exception
         return $this->errorData;
     }
 }
+

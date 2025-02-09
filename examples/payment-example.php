@@ -8,33 +8,26 @@ use Longswipe\Payment\Exceptions\LongswipeException;
 // Initialize the client with sandbox mode
 $client = new LongswipeClient('your-api-key-here', true);
 
-// Example voucher details
-$voucherCode = 'VOUCHER123';
-$voucherPin = '1234';
-$amount = 100.00;
 
-// Example 1: Fetch Voucher Details
+// Example parameters
+$params = [
+    'voucherCode' => 'VOUCHER123',
+    'amount' => 1000,
+    'receivingCurrencyId' => '2eedd32', // Replace with actual receiving currency ID,
+    'lockPin' => '1234', // Optional
+    'walletAddress' => '0x123...' // Optional
+];
+
 try {
-    echo "Fetching voucher details...\n";
-    $voucherDetails = $client->fetchVoucherDetails($voucherCode, $voucherPin, $amount);
-    echo "Voucher Details Response:\n";
-    print_r($voucherDetails);
+    // Fetch voucher details
+    $voucherDetails = $client->fetchVoucherDetails($params);
+    
+    // If details are okay, process the payment
+    $paymentResult = $client->processVoucherPayment($params);
+    
 } catch (LongswipeException $e) {
-    echo "Error fetching voucher details: " . $e->getMessage() . "\n";
-    if ($e->getErrorData()) {
-        echo "Error Data: " . print_r($e->getErrorData(), true) . "\n";
-    }
+    echo "Error: " . $e->getMessage();
+    echo "Code: " . $e->getCode();
+    var_dump($e->getData());
 }
 
-// Example 2: Process Payment
-try {
-    echo "\nProcessing payment...\n";
-    $paymentResult = $client->processVoucherPayment($voucherCode, $voucherPin, $amount);
-    echo "Payment Response:\n";
-    print_r($paymentResult);
-} catch (LongswipeException $e) {
-    echo "Error processing payment: " . $e->getMessage() . "\n";
-    if ($e->getErrorData()) {
-        echo "Error Data: " . print_r($e->getErrorData(), true) . "\n";
-    }
-}
